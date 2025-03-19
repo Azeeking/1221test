@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  testdb:
+    image: postgres:latest
+    ports:
+      - 5430:5432
+    environment:
+      - POSTGRES_PASSWORD=test
+      - POSTGRES_USER=test
+      - POSTGRES_DB=testdb
+      - POSTGRES_INITDB_ARGS=--auth-host=scram-sha-256 --auth-local=scram-sha-256
+    command: postgres -c max_connections=50 -c log_min_messages=LOG
